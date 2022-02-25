@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Yu-Gi-Oh! Trading Cards Dataset | Kaggle</title>
+  <meta charset="utf-8" />
+  <meta name="robots" content="index, follow" />
+  <meta name="description" content="Data on over 6000 Yu-Gi-Oh! Trading Cards" />
+  <meta name="turbolinks-cache-control" content="no-cache" />
+    <meta name="keywords" content="games,classification,exploratory data analysis,statistical analysis,card games" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+  <meta name="theme-color" content="#008ABC" />
+  <script nonce="kXZa/k1hHjB9df1MZkYiog==" type="text/javascript">
+    window["pageRequestStartTime"] = 1645743241006;
+    window["pageRequestEndTime"] = 1645743241180;
+    window["initialPageLoadStartTime"] = new Date().getTime();
+  </script>
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="anonymous" /><link rel="preconnect" href="https://stats.g.doubleclick.net" /><link rel="preconnect" href="https://storage.googleapis.com" /><link rel="preconnect" href="https://apis.google.com" />
+  <link href="/static/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <link rel="manifest" href="/static/json/manifest.json" crossorigin="use-credentials">
+
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/icon?family=Google+Material+Icons"
+    rel="preload" as="style" />
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,400i,500,500i,600,600i,700,700i"
+    rel="preload" as="style" />
+  <link href="https://fonts.googleapis.com/icon?family=Google+Material+Icons"
+    rel="stylesheet" media="print" id="async-google-font-1" />
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet" media="print" id="async-google-font-2" />
+  <script nonce="kXZa/k1hHjB9df1MZkYiog==" type="text/javascript">
+    const styleSheetIds = ["async-google-font-1", "async-google-font-2"];
+    styleSheetIds.forEach(function (id) {
+      document.getElementById(id).addEventListener("load", function() {
+        this.media = "all";
+      });
+    });
+  </script>
+
+    <link rel="stylesheet" type="text/css" href="/static/assets/vendor.css?v=1f6d99669e949b7dfa2b" />
+    <link rel="stylesheet" type="text/css" href="/static/assets/app.css?v=6d469c8f203f872b41ae" />
+  
+    
+ 
+      <script nonce="kXZa/k1hHjB9df1MZkYiog==">
+        try{(function(a,s,y,n,c,h,i,d,e){d=s.createElement("style");
+        d.appendChild(s.createTextNode(""));s.head.appendChild(d);d=d.sheet;
+        y=y.map(x => d.insertRule(x + "{ opacity: 0 !important }"));
+        h.start=1*new Date;h.end=i=function(){y.forEach(x => x<d.cssRules.length ? d.deleteRule(x) : {})};
+        (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+        })(window,document,['.site-header-react__nav'],'dataLayer',2000,{'GTM-52LNT9S':true});}catch(ex){}
+    </script>
+    <script nonce="kXZa/k1hHjB9df1MZkYiog==">
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-12629138-1', {
+            'optimize_id': 'GTM-52LNT9S',
+            'displayFeaturesTask': null,
+            'send_page_view': false,
+            'content_group1': 'Datasets'
+        });
+    </script>
+    <script nonce="kXZa/k1hHjB9df1MZkYiog==" async src="https://www.googletagmanager.com/gtag/js?id=UA-12629138-1"></script>
+
+  
+    
+        <meta property="og:url" content="https://kaggle.com/tathor/yugioh-trading-cards-dataset" />
+        <meta property="og:title" content="Yu-Gi-Oh! Trading Cards Dataset" />
+        <meta property="og:description" content="Data on over 6000 Yu-Gi-Oh! Trading Cards" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://storage.googleapis.com/kaggle-datasets-images/198583/438869/9fafa5eaa0f496c445a45ec9601b4306/dataset-card.jpg?t=2019-05-20-06-25-59" />
+        <meta property="fb:app_id" content="2665027677054710" />
+
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@kaggledatasets" />
+    
+
+  <meta name="twitter:site" content="@Kaggle" /> 
+  
+    
+        <script nonce="kXZa/k1hHjB9df1MZkYiog==" type="application/ld+json">{"@context":"http://schema.org/","@type":"Dataset","name":"Yu-Gi-Oh! Trading Cards Dataset","description":"### Context\n\nWhile working on a Yu-Gi-Oh! Card Image Classification project I decided to put together this dataset for information retrieval on cards post-classification.\n\n\n### Content\nThis dataset contains data for 6534 different cards from the Yu-Gi-Oh! Trading Card Game. It contains the following columns: **Name:** The name of the card.\n**Type:** The card's type (i.e. Normal Monster, Effect Monster, Trap Card, etc.)\n**Level:** Summoning Level\n**Race:** The card's race (i.e. Warrior, Dragon, Spellcaster, etc.),\n**Attribute:** The card's attribute (i.e. Water, Fire, Wind, etc.)\n**ATK:** The card's attack points\n**DEF:** The card's defense points\n\n### Acknowledgements\n\nThe data was collected via the [ygoprodeck API](https://db.ygoprodeck.com/api-guide/).  Thanks to them for providing such easy access to this data!\n\n\n### Inspiration\n\nI was working on a Yu-Gi-Oh! Card Classifier that would take an image of a Yu-Gi-Oh! Card, and attempt to classify what card it was. This data would then be used to provide details on the card.","url":"https://www.kaggle.com/tathor/yugioh-trading-cards-dataset","version":1,"keywords":["subject, culture and humanities, games","technique, classification","technique, exploratory data analysis","analysis, statistical analysis","subject, culture and humanities, games, card games"],"license":{"@type":"CreativeWork","name":"Unknown","url":""},"identifier":["198583"],"includedInDataCatalog":{"@type":"DataCatalog","name":"Kaggle","url":"https://www.kaggle.com"},"creator":{"@type":"Person","name":"T.A. Thor","url":"https://www.kaggle.com/tathor","image":"https://storage.googleapis.com/kaggle-avatars/thumbnails/1489121-kg.jpg"},"distribution":[{"@type":"DataDownload","requiresSubscription":true,"encodingFormat":"zip","fileFormat":"zip","contentUrl":"https://www.kaggle.com/tathor/yugioh-trading-cards-dataset/download","contentSize":"93535 bytes"}],"commentCount":0,"dateModified":"2019-05-20T06:13:22.99Z","discussionUrl":"https://www.kaggle.com/tathor/yugioh-trading-cards-dataset/discussion","alternateName":"Data on over 6000 Yu-Gi-Oh! Trading Cards","isAccessibleForFree":true,"thumbnailUrl":"https://storage.googleapis.com/kaggle-datasets-images/198583/438869/9fafa5eaa0f496c445a45ec9601b4306/dataset-card.jpg?t=2019-05-20-06-25-59","interactionStatistic":[{"@type":"InteractionCounter","interactionType":"http://schema.org/CommentAction","userInteractionCount":0},{"@type":"InteractionCounter","interactionType":"http://schema.org/DownloadAction","userInteractionCount":837},{"@type":"InteractionCounter","interactionType":"http://schema.org/ViewAction","userInteractionCount":14841},{"@type":"InteractionCounter","interactionType":"http://schema.org/LikeAction","userInteractionCount":40}]}</script>
+    
+
+  
+    
+        <link rel="alternate" type="application/json+oembed"
+            href="https://www.kaggle.com/oembed/dataset?url=https%3A%2F%2Fwww.kaggle.com%2Ftathor%2Fyugioh-trading-cards-dataset"
+            title="Yu-Gi-Oh! Trading Cards Dataset" />
+    
+
+  
+    
+    
+<script nonce="kXZa/k1hHjB9df1MZkYiog==" type="text/javascript">
+    var Kaggle = window.Kaggle || {};
+
+    Kaggle.Current = {
+        antiForgeryToken: 'CfDJ8LdUzqlsSWBPr4Ce3rb9VL_yOMKIcnMxhsU_sYUdU8Hai2XTMqEXuUuOd0Q5WD0RSMDRGVcxaY_zCE19Ca_GTfSj7m3NxpdtMMBSdi51G-Em7fAscd8ttpq0PsKQ_CQ10EuB42Nw8MMUgm1hYHNz9gI',
+        isAnonymous: true,
+        analyticsToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDU3NDQxNDEsIlVzZXJJZCI6MH0.Ui2AS_epuO2RkFBznljx6XF-ferWBFW-zTyRtTmG9A0',
+        analyticsTokenExpiry: 15,
+        
+        
+        
+        
+        
+        
+        
+        enableRapidash: true, 
+    }
+        Kaggle.Current.log = function(){};
+        Kaggle.Current.warn = function(){};
+
+    var decodeUserDisplayName = function () {
+        var escapedUserDisplayName = Kaggle.Current.userDisplayNameEscaped || "";
+        try {
+            var textVersion = new DOMParser().parseFromString(escapedUserDisplayName, "text/html").documentElement.textContent;
+            if (textVersion) {
+                return textVersion;
+            }
+        } catch(ex) {}
+        return escapedUserDisplayName;
+    }
+    Kaggle.Current.userDisplayName = decodeUserDisplayName();
+</script>
+
+    
+
+<script nonce="kXZa/k1hHjB9df1MZkYiog==" type="text/javascript">
+    var Kaggle = window.Kaggle || {};
+    Kaggle.PageMessages = [];
+</script>
+
+
+
+    <script nonce="kXZa/k1hHjB9df1MZkYiog==">window['useKaggleAnalytics'] = true;</script>
+
+  <script id="gapi-target" nonce="kXZa/k1hHjB9df1MZkYiog==" src="https://apis.google.com/js/api.js" defer
+    async></script>
+  <script nonce="kXZa/k1hHjB9df1MZkYiog==" src="/static/assets/runtime.js?v=a8b4c516f570756c77c1" data-turbolinks-track="reload"></script>
+  <script nonce="kXZa/k1hHjB9df1MZkYiog==" src="/static/assets/vendor.js?v=ee74b3fa186dd8634197" data-turbolinks-track="reload"></script>
+  <script nonce="kXZa/k1hHjB9df1MZkYiog==" src="/static/assets/app.js?v=dd7f03c92cfdcac45249" data-turbolinks-track="reload"></script>
+    <script nonce="kXZa/k1hHjB9df1MZkYiog==" type="text/javascript">
+      window.kaggleStackdriverConfig = {
+        key: 'AIzaSyA4eNqUdRRskJsCZWVz-qL655Xa5JEMreE',
+        projectId: 'kaggle-161607',
+        service: 'web-fe',
+        version: 'ci',
+        userId: '0'
+      }
+    </script>
+</head>
+
+<body data-turbolinks="false">
+  <main>
+    
+
+
+
+
+
+
+<div id="site-container"></div>
+<div data-component-name="NavigationContainer" style="display: flex; flex-direction: column; flex: 1 0 auto;"></div><script class="kaggle-component" nonce="kXZa/k1hHjB9df1MZkYiog==">var Kaggle=window.Kaggle||{};Kaggle.State=Kaggle.State||[];Kaggle.State.push({"navigationType":"BOTH_NAV"});performance && performance.mark && performance.mark("NavigationContainer.componentCouldBootstrap");</script>
+<div id="site-body" class="hide">
+    
+
+
+<div data-component-name="DatasetContainer" style="display: flex; flex-direction: column; flex: 1 0 auto;"></div><script class="kaggle-component" nonce="kXZa/k1hHjB9df1MZkYiog==">var Kaggle=window.Kaggle||{};Kaggle.State=Kaggle.State||[];Kaggle.State.push({"title":"Yu-Gi-Oh! Trading Cards Dataset","slug":"yugioh-trading-cards-dataset","licenseId":4,"data":{"firestorePath":"6k7fiBfTqS4ADchqLDaB/versions/n4uIkW1sWQFj1qPW0Se4","databundleVersionId":454430,"databundle":{"type":"OBJECT_TYPE_DATABUNDLE","key":"6k7fiBfTqS4ADchqLDaB","path":"6k7fiBfTqS4ADchqLDaB","legacyEntityId":210564,"relativeUrl":"","name":"Yu-Gi-Oh! Trading Cards Dataset","databundleInfo":{"currentDatabundleVersionId":454430,"databundleType":"DATABUNDLE_TYPE_DATASET","diffType":"VERSIONED","creationDate":"2019-05-20T06:13:21.549364700Z","creatorUserId":1489121,"currentGoodVersionKey":"n4uIkW1sWQFj1qPW0Se4","lastestVersionKey":"n4uIkW1sWQFj1qPW0Se4","versions":{"totalChildren":1}},"datasetInfo":{"datasetId":198583,"datasetSlug":"/tathor/yugioh-trading-cards-dataset"}},"databundleVersion":{"type":"OBJECT_TYPE_DATABUNDLE_VERSION","key":"n4uIkW1sWQFj1qPW0Se4","path":"6k7fiBfTqS4ADchqLDaB/versions/n4uIkW1sWQFj1qPW0Se4","legacyEntityId":454430,"relativeUrl":"","name":"Version 1","description":"Initial release","databundleVersionInfo":{"versionNumber":1,"versionNotes":"Initial release","creatorUserId":1489121,"creationDate":"2019-05-20T06:13:21.549367Z","databundleVersionType":"FILESET"},"datasetVersionInfo":{"datasetVersionId":438869},"statusInfo":{"status":"DATABUNDLE_STATUS_READY","statusMessage":"Ready","percentageCompleted":1},"exceptionInfo":{},"filesetInfo":{"totalSize":348626,"directories":{},"files":{"totalChildren":1}},"bundleCompressionInfo":{"filename":"archive.zip","fileExtension":".zip","fileSize":93535,"contentEncoding":"application/zip","contentMd5":"av5kXaJnhoK\u002BB\u002B5c7jyvaw==","archiveGcsUrl":"gs://kaggle-data-sets/198583/438869/bundle/archive.zip","creationLastUpdate":"2019-10-24T00:52:34.127519600Z","creationPercentComplete":1},"storageInfo":{"uploadDataLocation":{"bucket":"kaggle-data-sets","path":"198583/438869/upload"},"rawDataLocation":{"bucket":"kagglesdsdata","path":"datasets/198583/438869"},"individualCompressedLocation":{"bucket":"kaggle-data-sets","path":"198583/438869/compressed"},"bundleArchiveLocation":{"bucket":"kaggle-data-sets","path":"198583/438869/bundle/archive.zip"},"fileSystemLocation":{"bucket":"kaggle-data-sources","path":"datasets/198583/438869/fs/embedded_fs"}},"fileSummaryInfo":{"totalFileCount":1,"fileTypes":[{"extension":".csv","fileCount":1,"totalSize":348626}],"sampleFileNames":["card_data.csv"]},"columnSummaryInfo":{"totalColumnCount":7,"columnTypes":[{"columnType":"String","columnCount":4,"rowCount":26136},{"columnType":"Integer","columnCount":3,"rowCount":19602}],"sampleColumnNames":["DEF","ATK","Attribute","Race","Level","Type","Name"]}}},"owner":{"id":1489121,"imageUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/1489121-kg.jpg","name":"T.A. Thor","profileUrl":"/tathor","slug":"tathor"},"licenseGroups":[{"id":1,"name":"Creative Commons","licenses":[{"id":1,"name":"CC0: Public Domain","description":"CC0: Public Domain \u003Ca href=\u0022https://creativecommons.org/publicdomain/zero/1.0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://creativecommons.org/publicdomain/zero/1.0/","displaySequence":1},{"id":3,"name":"CC BY-NC-SA 4.0","description":"CC BY-NC-SA 4.0 \u003Ca href=\u0022https://creativecommons.org/licenses/by-nc-sa/4.0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://creativecommons.org/licenses/by-nc-sa/4.0/","displaySequence":2},{"id":8,"name":"CC BY-SA 4.0","description":"CC BY-SA 4.0 \u003Ca href=\u0022https://creativecommons.org/licenses/by-sa/4.0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://creativecommons.org/licenses/by-sa/4.0/","displaySequence":3},{"id":10,"name":"CC BY-SA 3.0","description":"CC BY-SA 3.0 \u003Ca href=\u0022https://creativecommons.org/licenses/by-sa/3.0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://creativecommons.org/licenses/by-sa/3.0/","displaySequence":4},{"id":13,"name":"Attribution 4.0 International (CC BY 4.0)","description":"CC-BY 4.0 \u003Ca href=\u0022https://creativecommons.org/licenses/by/4.0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://creativecommons.org/licenses/by/4.0/","displaySequence":5},{"id":14,"name":"Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)","description":"CC-BY-NC 4.0 \u003Ca href=\u0022https://creativecommons.org/licenses/by-nc/4.0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://creativecommons.org/licenses/by-nc/4.0/","displaySequence":6},{"id":16,"name":"Attribution 3.0 Unported (CC BY 3.0)","description":"CC BY 3.0 \u003Ca href=\u0022https://creativecommons.org/licenses/by/3.0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://creativecommons.org/licenses/by/3.0/","displaySequence":7},{"id":17,"name":"Attribution 3.0 IGO (CC BY 3.0 IGO)","description":"CC BY 3.0 IGO \u003Ca href=\u0022https://creativecommons.org/licenses/by/3.0/igo/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://creativecommons.org/licenses/by/3.0/igo/","displaySequence":8},{"id":19,"name":"Attribution-NonCommercial-ShareAlike 3.0 IGO (CC BY-NC-SA 3.0 IGO)","description":"CC BY-NC-SA 3.0 IGO \u003Ca href=\u0022https://creativecommons.org/licenses/by-nc-sa/3.0/igo/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://creativecommons.org/licenses/by-nc-sa/3.0/igo/","displaySequence":9},{"id":22,"name":"Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)","description":"CC BY-ND 4.0 \u003Ca href=\u0022https://creativecommons.org/licenses/by-nd/4.0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://creativecommons.org/licenses/by-nd/4.0/","displaySequence":10},{"id":23,"name":"Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)","description":"CC BY-NC-ND 4.0 \u003Ca href=\u0022https://creativecommons.org/licenses/by-nc-nd/4.0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://creativecommons.org/licenses/by-nc-nd/4.0/","displaySequence":11}],"displaySequence":1},{"id":2,"name":"GPL","licenses":[{"id":9,"name":"GPL 2","description":"GPL 2 \u003Ca href=\u0022http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html","displaySequence":1},{"id":25,"name":"GNU Lesser General Public License 3.0","description":"LGPL 3.0 \u003Ca href=\u0022http://www.gnu.org/licenses/lgpl-3.0.html\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"http://www.gnu.org/licenses/lgpl-3.0.html","displaySequence":2},{"id":26,"name":"GNU Affero General Public License 3.0","description":"AGPL 3.0 \u003Ca href=\u0022http://www.gnu.org/licenses/agpl-3.0.html\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"http://www.gnu.org/licenses/agpl-3.0.html","displaySequence":3},{"id":27,"name":"GNU Free Documentation License 1.3","description":"FDL 1.3 \u003Ca href=\u0022http://www.gnu.org/licenses/fdl-1.3.html\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"http://www.gnu.org/licenses/fdl-1.3.html","displaySequence":4}],"displaySequence":2},{"id":3,"name":"Open Data Commons","licenses":[{"id":5,"name":"Database: Open Database, Contents: Database Contents","description":"Database: Open Database \u003Ca href=\u0022http://opendatacommons.org/licenses/odbl/1.0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E, Contents: Database Contents \u003Ca href=\u0022http://opendatacommons.org/licenses/dbcl/1.0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"http://opendatacommons.org/licenses/dbcl/1.0/","displaySequence":1},{"id":6,"name":"Database: Open Database, Contents: \u00A9 Original Authors","description":"Database: Open Database \u003Ca href=\u0022http://opendatacommons.org/licenses/odbl/1.0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E, Contents: \u00A9 Original Authors","url":"http://opendatacommons.org/licenses/odbl/1.0/","displaySequence":2},{"id":15,"name":"ODC Public Domain Dedication and Licence (PDDL)","description":"PDDL  \u003Ca href=\u0022https://opendatacommons.org/licenses/pddl/1.0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://opendatacommons.org/licenses/pddl/1.0/","displaySequence":3},{"id":24,"name":"ODC Attribution License (ODC-By)","description":"ODC-BY 1.0 \u003Ca href=\u0022https://opendatacommons.org/licenses/by/1-0/index.html\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://opendatacommons.org/licenses/by/1-0/index.html","displaySequence":4}],"displaySequence":3},{"id":6,"name":"Community Data License","licenses":[{"id":20,"name":"Community Data License Agreement - Permissive - Version 1.0","description":"CDLA Permissive 1.0 \u003Ca href=\u0022https://cdla.io/permissive-1-0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://cdla.io/permissive-1-0/","displaySequence":1},{"id":21,"name":"Community Data License Agreement - Sharing - Version 1.0","description":"CDLA Sharing 1.0 \u003Ca href=\u0022https://cdla.io/sharing-1-0/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://cdla.io/sharing-1-0/","displaySequence":2}],"displaySequence":4},{"id":4,"name":"Special","licenses":[{"id":7,"name":"World Bank Dataset Terms of Use","description":"World Bank Dataset Terms of Use \u003Ca href=\u0022https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets","displaySequence":1},{"id":2,"name":"Reddit API Terms","description":"Reddit API Terms \u003Ca href=\u0022https://www.reddit.com/wiki/api\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://www.reddit.com/wiki/api","displaySequence":2},{"id":18,"name":"U.S. Government Works","description":"U.S. Government Works \u003Ca href=\u0022https://www.usa.gov/government-works/\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://www.usa.gov/government-works/","displaySequence":3},{"id":28,"name":"EU ODP Legal Notice","description":"EU ODP Legal Notice \u003Ca href=\u0022https://ec.europa.eu/info/legal-notice_en\u0022 target=\u0022_blank\u0022\u003E\u003Cspan class=\u0022fa fa-info-circle\u0022/\u003E\u003C/a\u003E","url":"https://ec.europa.eu/info/legal-notice_en","displaySequence":4}],"displaySequence":5},{"id":5,"name":"Other","licenses":[{"id":11,"name":"Data files \u00A9 Original Authors","description":"Data files \u00A9 Original Authors","displaySequence":1},{"id":12,"name":"Other (specified in description)","description":"Other (specified in description)","displaySequence":2},{"id":4,"name":"Unknown","description":"Unknown","displaySequence":3}],"displaySequence":6}],"owners":[{"imageUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/","profileUrl":"/"},{"id":1489121,"imageUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/1489121-kg.jpg","name":"T.A. Thor","profileUrl":"/tathor","slug":"tathor"}],"overview":"Data on over 6000 Yu-Gi-Oh! Trading Cards","description":"### Context\n\nWhile working on a Yu-Gi-Oh! Card Image Classification project I decided to put together this dataset for information retrieval on cards post-classification.\n\n\n### Content\nThis dataset contains data for 6534 different cards from the Yu-Gi-Oh! Trading Card Game. It contains the following columns: **Name:** The name of the card.\n**Type:** The card\u0027s type (i.e. Normal Monster, Effect Monster, Trap Card, etc.)\n**Level:** Summoning Level\n**Race:** The card\u0027s race (i.e. Warrior, Dragon, Spellcaster, etc.),\n**Attribute:** The card\u0027s attribute (i.e. Water, Fire, Wind, etc.)\n**ATK:** The card\u0027s attack points\n**DEF:** The card\u0027s defense points\n\n### Acknowledgements\n\nThe data was collected via the [ygoprodeck API](https://db.ygoprodeck.com/api-guide/).  Thanks to them for providing such easy access to this data!\n\n\n### Inspiration\n\nI was working on a Yu-Gi-Oh! Card Classifier that would take an image of a Yu-Gi-Oh! Card, and attempt to classify what card it was. This data would then be used to provide details on the card.","datasetId":198583,"datasetVersionId":438869,"datasetVersionNumber":1,"lastVersionNumber":1,"datasetUrl":"/tathor/yugioh-trading-cards-dataset","datasetExternalUrl":"https://kaggle.com/tathor/yugioh-trading-cards-dataset","originalImageUrl":"https://storage.googleapis.com/kaggle-datasets-images/198583/438869/9fafa5eaa0f496c445a45ec9601b4306/data-original.jpg?t=2019-05-20-06-25-59","coverImageUrl":"https://storage.googleapis.com/kaggle-datasets-images/198583/438869/9fafa5eaa0f496c445a45ec9601b4306/dataset-cover.jpg?t=2019-05-20-06-25-59","cardImageUrl":"https://storage.googleapis.com/kaggle-datasets-images/198583/438869/9fafa5eaa0f496c445a45ec9601b4306/dataset-card.jpg?t=2019-05-20-06-25-59","thumbnailImageUrl":"https://storage.googleapis.com/kaggle-datasets-images/198583/438869/9fafa5eaa0f496c445a45ec9601b4306/dataset-thumbnail.jpg?t=2019-05-20-06-25-59","license":{"id":4,"name":"Unknown","description":"Unknown"},"voteCount":40,"creatorUserId":1489121,"creatorDisplayName":"T.A. Thor","lastUpdated":"2019-05-20T06:13:22.990Z","downloadUrl":"/tathor/yugioh-trading-cards-dataset/download","newNotebookUrl":"code/scripts/new?datasetVersionId=438869","newScriptUrl":"code/scripts/new?datasetVersionId=438869","numberOfViews":14841,"numberOfDownloads":837,"numberOfScripts":6,"hideVersionStatuses":true,"cardImageLeft":634,"cardImageTop":0,"cardImageWidth":399,"cardImageHeight":399,"coverImageLeft":3,"coverImageTop":0,"coverImageWidth":1896,"coverImageHeight":399,"datasetVersions":[{"id":438869,"slug":"yugioh-trading-cards-dataset","name":"Yu-Gi-Oh! Trading Cards Dataset","creationDate":"2019-05-20T06:13:22.990Z","versionNumber":1,"versionNotes":"Initial release","thumbnailImageUrl":"https://storage.googleapis.com/kaggle-datasets-images/198583/438869/9fafa5eaa0f496c445a45ec9601b4306/dataset-thumbnail.jpg?t=2019-05-20-06-25-59","datasetVersionUrl":"/tathor/yugioh-trading-cards-dataset/version/1","status":"READY","creator":{"id":1489121,"imageUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/1489121-kg.jpg","name":"T.A. Thor","profileUrl":"/tathor","slug":"tathor"},"databundleVersionId":454430}],"datasetVersionTotalCount":1,"type":"FILESET","diffType":"VERSIONED","usabilityRating":{"score":0.7058824,"columnDescriptionScore":0,"coverImageScore":1,"fileDescriptionScore":1,"fileFormatScore":1,"overviewScore":1,"publicKernelScore":1,"subtitleScore":1,"tagScore":1},"discussion":{"dataUrl":"/forums/209538/topics.json","id":209538,"subscription":"UNSUBSCRIBE","paramValues":{"page":1,"group":"TOPIC_LIST_GROUP_ALL","sortBy":"TOPIC_LIST_SORT_BY_HOT","category":"TOPIC_LIST_CATEGORY_ALL"}},"newTopic":{"authorType":"TOPIC","forumId":209538,"parentName":"Yu-Gi-Oh! Trading Cards Dataset","parentUrl":"/tathor/yugioh-trading-cards-dataset/discussion"},"categories":{"tags":[{"id":2500,"name":"games","fullPath":"subject \u003E culture and humanities \u003E games","listingUrl":"/datasets?group=public\u0026tagids=2500","description":"One of the hallmarks of intelligence is the use of games and toys to occupy free time and develop intellectually. Often stored in Mom\u0027s basement.","datasetCount":2723,"notebookCount":35472,"tagUrl":"/tags/games-and-toys","displayName":"Games"},{"id":13302,"name":"classification","fullPath":"technique \u003E classification","listingUrl":"/datasets?group=public\u0026tagids=13302","datasetCount":2183,"competitionCount":4,"notebookCount":13663,"tagUrl":"/tags/classification","displayName":"Classification"},{"id":13201,"name":"exploratory data analysis","fullPath":"technique \u003E exploratory data analysis","listingUrl":"/datasets?group=public\u0026tagids=13201","datasetCount":1359,"notebookCount":21204,"tagUrl":"/tags/eda","displayName":"Exploratory Data Analysis"},{"id":13210,"name":"statistical analysis","fullPath":"analysis \u003E statistical analysis","listingUrl":"/datasets?group=public\u0026tagids=13210","datasetCount":261,"notebookCount":1558,"tagUrl":"/tags/statistical-analysis","displayName":"Statistical Analysis"},{"id":2502,"name":"card games","fullPath":"subject \u003E culture and humanities \u003E games \u003E card games","listingUrl":"/datasets?group=public\u0026tagids=2502","description":"A card game is any game using playing cards as the primary device with which the game is played, be they traditional or game-specific. Countless card games exist, including families of related games (such as poker).","datasetCount":82,"competitionCount":1,"notebookCount":23,"tagUrl":"/tags/card-games","displayName":"Card Games"}],"type":"TAG_TYPE_DATASET"},"upvoteSuggestion":{"voteCount":40,"medalVoteCount":12,"upVoters":[{"avatarThumbnailUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/1893940-kg.jpg","displayName":"Takahiro Saito","profileUrl":"/takahiro3110","tier":"EXPERT","tierInt":2,"userId":1893940,"userName":"takahiro3110"},{"avatarThumbnailUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/1000583-kg.png","displayName":"Mitsuru Fujiwara","profileUrl":"/mfjwr1","tier":"EXPERT","tierInt":2,"userId":1000583,"userName":"mfjwr1"},{"avatarThumbnailUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/988427-kg.png","displayName":"Hiromichi NOMATA","profileUrl":"/hiromichinomata","tier":"EXPERT","tierInt":2,"userId":988427,"userName":"hiromichinomata"},{"avatarThumbnailUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/1335722-kg.jpg","displayName":"kukulkan","profileUrl":"/kukulkan","tier":"CONTRIBUTOR","tierInt":1,"userId":1335722,"userName":"kukulkan"},{"avatarThumbnailUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png","displayName":"Navmeet J","profileUrl":"/naviee","tier":"CONTRIBUTOR","tierInt":1,"userId":1162269,"userName":"naviee"},{"avatarThumbnailUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/1101291-kg.jpg","displayName":"WhiteLord","profileUrl":"/whitelord","tier":"CONTRIBUTOR","tierInt":1,"userId":1101291,"userName":"whitelord"},{"avatarThumbnailUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png","displayName":"Eric Layer","profileUrl":"/ericlayer","tier":"CONTRIBUTOR","tierInt":1,"userId":8454981,"userName":"ericlayer"},{"avatarThumbnailUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png","displayName":"Ahmed Elnakeeb","profileUrl":"/ahmedelnakeeb","tier":"CONTRIBUTOR","tierInt":1,"userId":5638594,"userName":"ahmedelnakeeb"},{"avatarThumbnailUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/4057087-kg.jpg","displayName":"SirSlade","profileUrl":"/sirslade","tier":"CONTRIBUTOR","tierInt":1,"userId":4057087,"userName":"sirslade"},{"avatarThumbnailUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/3415749-kg.jpg","displayName":"Isaac_Lee","profileUrl":"/isaaclys","tier":"CONTRIBUTOR","tierInt":1,"userId":3415749,"userName":"isaaclys"},{"avatarThumbnailUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/2872265-kg.jpg","displayName":"suiseisekisuisui","profileUrl":"/umemiyaumeume","tier":"CONTRIBUTOR","tierInt":1,"userId":2872265,"userName":"umemiyaumeume"},{"avatarThumbnailUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/2464087-gr.jpg","displayName":"anil kaynar","profileUrl":"/anilkay","tier":"CONTRIBUTOR","tierInt":1,"userId":2464087,"userName":"anilkay"}]},"collaborators":{"owner":{"userId":1489121,"profileUrl":"/tathor","thumbnailUrl":"https://storage.googleapis.com/kaggle-avatars/thumbnails/1489121-kg.jpg","name":"T.A. Thor","slug":"tathor","type":"OWNER"}},"canSeeConfigAsCode":true,"canSeeDatasetHashLink":true,"medalUrl":"/static/images/medals/datasets/bronzel@2x.png","moderationStatus":"PRIVATED_MODERATION_STATUS_NO_ABUSE","@wf": "Datasets.DatasetDtoWireFormat3"});performance && performance.mark && performance.mark("DatasetContainer.componentCouldBootstrap");</script><script nonce="kXZa/k1hHjB9df1MZkYiog==" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    preferredFont: "TeX",
+    availableFonts: ["STIX", "TeX"],
+    linebreaks: {
+    automatic: true
+    },
+    EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+    inlineMath: [["\\(", "\\)"], ["\\\\(", "\\\\)"]],
+    displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+    processEscapes: true,
+    ignoreClass: "tex2jax_ignore|dno"
+    },
+    TeX: {
+    noUndefined: {
+    attributes: {
+    mathcolor: "red",
+    mathbackground: "#FFEEEE",
+    mathsize: "90%"
+    }
+    }
+    },
+    Macros: {
+    href: "{}"
+    },
+    skipStartupTypeset: true,
+    messageStyle: "none",
+    extensions: [],
+    });
+</script>
+<script type="text/javascript" nonce="kXZa/k1hHjB9df1MZkYiog==">
+  window.addEventListener("DOMContentLoaded", () => {
+    const head = document.getElementsByTagName("head")[0];
+    const useProdHosts = ["www.kaggle.com", "admin.kaggle.com"];
+    const subdomain = useProdHosts.includes(window.location.hostname) ? "www" : "staging";
+
+    const lib = document.createElement("script");
+    lib.type = "text/javascript";
+    lib.src = `https://${subdomain}.kaggleusercontent.com/static/mathjax/2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML`;
+    head.appendChild(lib);
+  });
+</script>
+
+
+</div>
+
+
+
+
+  </main>
+</body>
+
+</html>
