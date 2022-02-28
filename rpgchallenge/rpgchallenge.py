@@ -8,7 +8,7 @@ def showInstructions():
   #print a main menu and the commands
     print('''
 RPG Game
-You upset the wrong wizard, and he responded by locking you inside your own mind.
+You upset a powerful wizard, and he responded by locking you inside your own mind.
 You need to find a way to escape!
 =================================================================================
 Commands:
