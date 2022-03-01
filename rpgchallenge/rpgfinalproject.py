@@ -32,6 +32,8 @@ def showStatus():
         print("The Wizard is in the castle ruins")
     if 'character' in rooms[currentRoom] and 'bear' in rooms[currentRoom]['character']:
         print("There is a bear hehind the cabin")
+    if 'character' in rooms[currentRoom] and 'enchantress' in rooms[currentRoom]['character']:
+        print("There is an Enchantress in the mansion")
     
 #an inventory, which is initially empty
 inventory = []
@@ -63,6 +65,7 @@ rooms = {
             'Mansion' : {
                   'east' : 'Brick Wall',
                   'south' : 'Corn Fields',
+                  'character' : 'enchantress',
                },
                'Cabin' : {
                   'north' : 'West End Bridge',
