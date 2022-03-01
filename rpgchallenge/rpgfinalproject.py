@@ -14,6 +14,7 @@ Commands:
 
 go [north, east, south, or west]
 get [item]
+use [item]
 ''')
 
 def showStatus():
@@ -148,6 +149,12 @@ while True:
         else:
       #tell them they can't get it
             print('Can\'t get ' + move[1] + '!')
+    
+    #if they type 'use' first
+    if move[0] == 'use' :
+        #check if they have item in and the tem is the one they want to use
+        if item in rooms[currentRoom] and move[1] in rooms[currentRoom]['item']:
+
 
   ## players primary objective
     if currentRoom == 'Brick Wall' and 'key' in inventory:
