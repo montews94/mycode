@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import sys
 import os
-
+import random
 
 def showInstructions():
   #print a main menu and the commands
@@ -12,7 +12,8 @@ You need to find a way to escape!
 =================================================================================
 Commands:
 
-go [north, east, south, or west]
+go [north, east, south,
+west, outside, or inside]
 get [item]
 use [item]
 ''')
@@ -22,20 +23,37 @@ def showStatus():
     print('---------------------------')
 
     print('You are at the ' + currentRoom)
+    #let user know there is a character!
+    if 'character' in rooms[currentRoom] and 'bear' in rooms[currentRoom]['character']:
+        print("Oh no, there's a bear inside the cabin!")
+    if 'character' in rooms[currentRoom] and 'wizard' in rooms[currentRoom]['character']:
+        print("The Wizard is in the castle ruins")
+    if 'character' in rooms[currentRoom] and 'enchantress' in rooms[currentRoom]['character']:
+        print("There is an Enchantress in the mansion")
   #print the current inventory
     print('You have: ' + str(inventory) + ' in inventory')
   #print an item if there is one
     if "item" in rooms[currentRoom]:
         print('You see a ' + rooms[currentRoom]['item'] + ' on the floor')
         print("---------------------------")
-    #let user know if there is a threat
-    if 'character' in rooms[currentRoom] and 'wizard' in rooms[currentRoom]['character']:
-        print("The Wizard is in the castle ruins")
-    if 'character' in rooms[currentRoom] and 'bear' in rooms[currentRoom]['character']:
-        print("There is a bear hehind the cabin")
-    if 'character' in rooms[currentRoom] and 'enchantress' in rooms[currentRoom]['character']:
-        print("There is an Enchantress in the mansion")
-    
+
+# we need to define the different uses of items in different locations
+def itemsUse():
+    if move[1] == 'bottle':
+        showStatus()
+        global currentRoom
+        if 'character' in rooms[currentRoom] and 'bear' in rooms[currentRoom]['character']:
+            print("You throw the bottle and it shatters! It scares the bear giving youjust enough time to escape!")
+            inventory.remove("bottle")
+            currentRoom = 'Cabin'
+    if move[1] == 'mirror':
+        showStatus()
+        if 'character' in rooms[currentRoom] and 'bear' in rooms[currentRoom]['character']:
+            print("you throw the mirror and it shatters! It scares the bear giving you just enough time to escape")
+            inventory.remove("mirror")
+            currentRoom = 'Cabin'
+
+
 #an inventory, which is initially empty
 inventory = []
 
@@ -72,7 +90,7 @@ rooms = {
                   'north' : 'West End Bridge',
                   'east'  : 'Lake',
                   'south'  : 'Woods',
-                  'character' : 'bear',
+                  'inside' : 'Cabin Front Room',
                 },
 
             'Lake' : {
@@ -98,10 +116,15 @@ rooms = {
                   'east' : 'Castle Ruins',
                   'west' : 'West End Bridge',
                   'item' : 'key'
-            }
+                  },
+            'Cabin Front Room' : {
+                    'character' : 'bear',
+                    'outside' : 'Cabin',
+            },
          }
 #start the player in the Hippocampus( where dreams are formed)
 currentRoom = 'Hippocampus'
+
 #clear the screen so game is the only thin being displayed
 os.system('clear')
 #give instructions to player in the beginning of the game
@@ -149,11 +172,15 @@ while True:
         else:
       #tell them they can't get it
             print('Can\'t get ' + move[1] + '!')
-    
-    #if they type 'use' first
+    #if item is not in inventory to use
     if move[0] == 'use' :
-        #check if they have item in and the tem is the one they want to use
-        if item in rooms[currentRoom] and move[1] in rooms[currentRoom]['item']:
+        if move[1] in inventory:
+            #check items usages from function
+            itemsUse()
+            #otherwise, the item is no in the inventory list
+        else:
+            #print can not use:
+            print('Can\'t use ' + move[1] + '! Not in inventory!')
 
 
   ## players primary objective
@@ -162,22 +189,15 @@ while True:
         print("You managed to reach the Brick Wall with the key. You see a door magically appear, and you enter the key. As soon as you turn handle and open the door you wake up... YOU WIN!")
         break
 
-  ## If a player enters a room with a character
+  ## If a player enters a room with a character and loses
     if 'character' in rooms[currentRoom] and 'bear' in rooms[currentRoom]['character']:
-        if "miror" not in inventory and "bottle" not in inventory:
-            showStatus()
-            print("The bear jumps out from behind the cabin and Attacks you... Game Over!")
-            break
-        if "bottle" in inventory:
-            showStatus()
-            print("You throw the bottle and it shatters! It's enough to scare the bear, and it  runs away.")
-            del rooms[currentRoom]['character']
-            inventory.remove("bottle")
-        elif "mirror" in inventory:
-            showStatus()
-            print("You throw the mirror and it shatters! Startled, the bear runs away.")
-            del rooms[currentRoom]['character']
-            inventory.remove("mirror")
+        if "mirror" not in inventory and "bottle" not in inventory:
+            #give the player 50/50 odds of escaping without items
+            bear_attack = random.randint(0,1)
+            if bear_attack == 0 :
+                showStatus()
+                print("The bear attacks you and you die... Game Over!")
+                break
     if 'character' in rooms[currentRoom] and 'wizard' in rooms[currentRoom]['character']:
         if "mirror" in inventory:
             showStatus()
