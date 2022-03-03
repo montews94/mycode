@@ -27,7 +27,8 @@ def showStatus():
     if 'character' in rooms[currentRoom] and 'bear' in rooms[currentRoom]['character']:
         print("Oh no, there's a bear inside the cabin!")
     if 'character' in rooms[currentRoom] and 'wizard' in rooms[currentRoom]['character']:
-        print("The Wizard is in the castle ruins")
+        print("""The Wizard is Spying on you from the Castle Ruins! He sees you
+and hurls hurls a spell right at you!...""")
     if 'character' in rooms[currentRoom] and 'enchantress' in rooms[currentRoom]['character']:
         print("There is an Enchantress in the mansion")
   #print the current inventory
@@ -52,7 +53,11 @@ def itemsUse():
             print("you throw the mirror and it shatters! It scares the bear giving you just enough time to escape")
             inventory.remove("mirror")
             currentRoom = 'Cabin'
-
+        if 'character' in rooms[currentRoom] and 'wizard' in rooms[currentRoom]['character']:
+            print("""You draw your mirror and reflect the wizards attack! The Wizard dodges
+and disappears...""")
+            #remove wizard from castle by deleting key pair
+            del rooms[currentRoom]['character']
 
 #an inventory, which is initially empty
 inventory = []
@@ -110,7 +115,7 @@ rooms = {
             'Castle Ruins' : {
                   'south' : 'Lake',
                   'west' : 'East End Bridge',
-                  'character' : 'wizard',
+                  'inside' : 'Castle Ruins Courtyard',
             },
             'East End Bridge' : {
                   'east' : 'Castle Ruins',
@@ -121,6 +126,10 @@ rooms = {
                     'character' : 'bear',
                     'outside' : 'Cabin',
             },
+            'Castle Ruins Courtyard' : {
+                    'character' : 'wizard',
+                    'outside' : 'Castle Ruins',
+                    },
          }
 #start the player in the Hippocampus( where dreams are formed)
 currentRoom = 'Hippocampus'
@@ -198,11 +207,12 @@ while True:
                 showStatus()
                 print("The bear attacks you and you die... Game Over!")
                 break
+
     if 'character' in rooms[currentRoom] and 'wizard' in rooms[currentRoom]['character']:
-        if "mirror" in inventory:
-            showStatus()
-            print("The wizard is using the castle ruins to spy inside your mind, and sees you're looking for a way out. Enraged, he hurls a spell at you! You quickly draw the mirror and reflect the wizard's spell turning him to stone! you suddenly ragain conciousness... YOU WIN!")
-            break
-        showStatus()
-        print("The Wizard is using the castle ruins to spy inside your mind, and sees you're looking for a way out. Enraged, he hurls a spell at you! You are now trapped in stone and unable to escape... GAME OVER!")
-        break
+        if "mirror" not in inventory:
+            #give player 25% chance of escaping
+            wizard_attack = random.randint(0,4)
+            if wizard_attack != 0 :
+                showStatus()
+                print("""You were turned to stone and can no longer escape... GAME OVER!""")
+                break
