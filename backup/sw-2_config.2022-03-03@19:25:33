@@ -1,0 +1,23 @@
+! Command: show running-config
+! device: sw1 (vEOS, EOS-4.22.0F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+transceiver qsfp default-mode 4x10G
+!
+hostname sw1
+dns domain 5c5bfbf3-79ce-4343-b109-904a4928b76d
+!
+spanning-tree mode mstp
+!
+no aaa root
+!
+username admin role network-admin secret sha512 $6$nRdg9H9/bnWP6ONm$96pBpDbxuURQQLzyTNYGQKoz6LoreS8M4F4IOnOkI9vcNJS9b9sH0QmtHlscaHuG/k2VhDeXJGU999UVqbNG./
+!
+interface Management1
+   ip address dhcp
+   dhcp client accept default-route
+!
+no ip routing
+!
+end
