@@ -23,6 +23,10 @@ def showStatus():
     print('---------------------------')
 
     print('You are at the ' + currentRoom)
+    #add the escape door if player meets win criteria(brick wall + key)
+    if currentRoom == 'Brick Wall':
+        if 'key' in inventory:
+            print("A door magically appeared?")
     #let user know there is a character!
     if 'character' in rooms[currentRoom] and 'bear' in rooms[currentRoom]['character']:
         print("Oh no, there's a bear inside the cabin!")
@@ -77,6 +81,13 @@ ring and make plans to start a family... YOU LOSE, but at least YOUR HAPPY!""")
             end_game = "yes"                  
         else:
             print("You cant use the " + move[1] + " here")
+    elif move[1] == 'key':        
+        if currentRoom == 'Brick Wall':
+            showStatus()
+            print("You used the key and opened the door to escape... YOU WIN!!!")
+            end_game ="yes"
+        else:
+            print("You cant use the " +  move[1] + " here")
 
 #an inventory, which is initially empty
 inventory = []
@@ -216,12 +227,9 @@ while True:
             print('Can\'t use ' + move[1] + '! Not in inventory!')
 
 
-  ## players primary objective
-    if currentRoom == 'Brick Wall' and 'key' in inventory:
-        showStatus()
-        print("You managed to reach the Brick Wall with the key. You see a door magically appear, and you enter the key. As soon as you turn handle and open the door you wake up... YOU WIN!")
-        break
-
+  ## players primary objective(give a clue) if they do have key
+    if currentRoom == 'Brick Wall' and 'key' not in inventory:
+        print("Why is there a Brick Wall here? interesting...")
   ## If a player enters a room with a character and loses
     if 'character' in rooms[currentRoom] and 'bear' in rooms[currentRoom]['character']:
         if "mirror" not in inventory and "bottle" not in inventory:
