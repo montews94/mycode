@@ -30,7 +30,8 @@ def showStatus():
         print("""The Wizard is Spying on you from the Castle Ruins! He sees you
 and hurls hurls a spell right at you!...""")
     if 'character' in rooms[currentRoom] and 'enchantress' in rooms[currentRoom]['character']:
-        print("There is an Enchantress in the mansion")
+        print("""There is an Enchantress inside the mansion. The door disappeared behind
+you, and your mission is fading!""")
   #print the current inventory
     print('You have: ' + str(inventory) + ' in inventory')
   #print an item if there is one
@@ -47,17 +48,35 @@ def itemsUse():
             print("You throw the bottle and it shatters! It scares the bear giving youjust enough time to escape!")
             inventory.remove("bottle")
             currentRoom = 'Cabin'
-    if move[1] == 'mirror':
+        else:
+            print("You cant use the " + move[1] + " here")
+    elif move[1] == 'mirror':
         showStatus()
         if 'character' in rooms[currentRoom] and 'bear' in rooms[currentRoom]['character']:
             print("you throw the mirror and it shatters! It scares the bear giving you just enough time to escape")
             inventory.remove("mirror")
             currentRoom = 'Cabin'
-        if 'character' in rooms[currentRoom] and 'wizard' in rooms[currentRoom]['character']:
+        elif 'character' in rooms[currentRoom] and 'wizard' in rooms[currentRoom]['character']:
             print("""You draw your mirror and reflect the wizards attack! The Wizard dodges
 and disappears...""")
             #remove wizard from castle by deleting key pair
             del rooms[currentRoom]['character']
+        elif 'character' in rooms[currentRoom] and 'enchantress' in rooms[currentRoom]['character']:
+            print("""You pull out your mirror. After a quick glance you remember your
+mission... Hurry go outside the window Now!! """)
+            #add escape by adding key pair outside
+            rooms[currentRoom]['outside']= 'Mansion'
+        else:
+            print("You cant use the " + move[1] + " here")
+    elif move[1] == 'ring':
+        showStatus()
+        global end_game
+        if 'character' in rooms[currentRoom] and 'enchantress' in rooms[currentRoom]['character']:
+            print("""You are overcome by the enchantress's power! You even give her a  
+ring and make plans to start a family... YOU LOSE, but at least YOUR HAPPY!""")
+            end_game = "yes"                  
+        else:
+            print("You cant use the " + move[1] + " here")
 
 #an inventory, which is initially empty
 inventory = []
@@ -89,7 +108,7 @@ rooms = {
             'Mansion' : {
                   'east' : 'Brick Wall',
                   'south' : 'Corn Fields',
-                  'character' : 'enchantress',
+                  'inside' : 'Mansion Foyer',
                },
                'Cabin' : {
                   'north' : 'West End Bridge',
@@ -130,10 +149,14 @@ rooms = {
                     'character' : 'wizard',
                     'outside' : 'Castle Ruins',
                     },
+            'Mansion Foyer' : {
+                    'character' : 'enchantress',
+                    },
          }
 #start the player in the Hippocampus( where dreams are formed)
 currentRoom = 'Hippocampus'
-
+    #create a variable that can end the game 
+end_game = "no"
 #clear the screen so game is the only thin being displayed
 os.system('clear')
 #give instructions to player in the beginning of the game
@@ -141,7 +164,6 @@ showInstructions()
 
 #loop until win/loss criteria are met
 while True:
-
     showStatus()
 
   #get the player's next 'move'
@@ -186,6 +208,8 @@ while True:
         if move[1] in inventory:
             #check items usages from function
             itemsUse()
+            if end_game == "yes":
+                break
             #otherwise, the item is no in the inventory list
         else:
             #print can not use:
@@ -211,8 +235,21 @@ while True:
     if 'character' in rooms[currentRoom] and 'wizard' in rooms[currentRoom]['character']:
         if "mirror" not in inventory:
             #give player 25% chance of escaping
-            wizard_attack = random.randint(0,4)
+            wizard_attack = random.randint(0,3)
             if wizard_attack != 0 :
                 showStatus()
                 print("""You were turned to stone and can no longer escape... GAME OVER!""")
                 break
+    if 'character' in rooms[currentRoom] and 'enchantress' in rooms[currentRoom]['character']:
+        if "mirror" not in inventory and "ring" not in inventory:
+            #give player 33.3% chance of escaping
+            enchantress_lure = random.randint(0,2)
+            if enchantress_lure != 0 :
+                showStatus()
+                print("""You've been hypnotized by the enchantress and lose all desire
+to escape... GAME OVER!""")
+                break
+            else:
+                print("Go out the Window while you still can!")
+                #this adds the key pair to go outside
+                rooms[currentRoom]['outside']='Mansion'
